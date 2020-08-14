@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-from civictechprojects.migrations.data_migrations.migrate_location import migrate_locations_from_city_list
+# from civictechprojects.migrations.data_migrations.migrate_location import migrate_locations_from_city_list
 
 
 class Migration(migrations.Migration):
@@ -27,5 +27,6 @@ class Migration(migrations.Migration):
             model_name='project',
             name='project_state',
             field=models.CharField(blank=True, max_length=100),
-        ), migrations.RunPython(migrate_locations_from_city_list, reverse_code=migrations.RunPython.noop)
+        ),
+        # migrations.RunPython(migrate_locations_from_city_list, reverse_code=migrations.RunPython.noop)
     ]

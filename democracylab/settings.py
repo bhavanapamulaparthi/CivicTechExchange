@@ -25,11 +25,11 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = "d!01@gn+%1ql1n(*)8xo+nx$$&n@mg$0_)9g+!(t-2vncaq!j8"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = strtobool(os.environ.get('DJANGO_DEBUG'))
-
+# DEBUG = strtobool(os.environ.get('DJANGO_DEBUG'==False))
+DEBUG =False
 ALLOWED_HOSTS = ['*']
 
 S3_BUCKET = os.environ.get('S3_BUCKET')
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.gis',
+    # 'django.contrib.gis',
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.sites',
@@ -144,19 +144,20 @@ DL_DATABASE = os.environ.get('DL_DATABASE', '')
 HOSTNAME = os.environ.get('HOSTNAME', '127.0.0.1')
 
 DATABASES = ast.literal_eval(DL_DATABASE) if DL_DATABASE else {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'postgres',
+'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'democracy',
         'USER': 'postgres',
-        'PASSWORD': 'p0stgres!',
-        'HOST': HOSTNAME,
+        'PASSWORD': '1234',
         'PORT': '5432',
+    'HOST':'localhost'
+
     }
 }
 
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
-DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
+# DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -212,9 +213,9 @@ EMAIL_VOLUNTEER_ACCT = read_connection_config(ast.literal_eval(os.environ.get('E
 # Default log to console in the absence of any account configurations
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-PROTOCOL_DOMAIN = os.environ['PROTOCOL_DOMAIN']
-ADMIN_EMAIL = os.environ['ADMIN_EMAIL']
-CONTACT_EMAIL = os.environ['CONTACT_EMAIL']
+PROTOCOL_DOMAIN = "http://127.0.0.1:8000"
+ADMIN_EMAIL = "marlonakeating+1111@gmail.com"
+CONTACT_EMAIL = "hello@democracylab.org"
 FAKE_EMAILS = not EMAIL_SUPPORT_ACCT or not EMAIL_VOLUNTEER_ACCT or os.environ.get('FAKE_EMAILS', False) == 'True'
 
 MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY', None)
@@ -426,5 +427,4 @@ EVENT_URL = os.environ.get('EVENT_URL', '')
 
 GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH', '')
 GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH', '')
-
 PRIVACY_POLICY_URL = os.environ.get('PRIVACY_POLICY_URL')

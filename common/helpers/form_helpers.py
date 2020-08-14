@@ -3,7 +3,7 @@ from common.helpers.collections import find_first
 from common.models.tags import Tag
 from common.helpers.date_helpers import parse_front_end_datetime
 from distutils.util import strtobool
-from django.contrib.gis.geos import Point
+# from django.contrib.gis.geos import Point
 
 
 def read_form_field_string(model, form, field_name, transformation=None):

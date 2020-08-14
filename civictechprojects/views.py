@@ -4,7 +4,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.gis.geos import Point
+# from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import D
 from django.template import loader
 from django.utils import timezone
